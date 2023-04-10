@@ -7,4 +7,18 @@ class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+
+  get '/' do
+    return erb(:chitter)
+  end
+
+  get '/new_message' do
+    return erb(:new_message)
+  end
+
+  get '/signup' do
+    return erb(:signup)
+  end
+
+
 end
