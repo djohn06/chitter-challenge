@@ -1,5 +1,10 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require_relative 'lib/database_connection'
+require_relative 'lib/peeps_repository'
+
+# We need to give the database name to the method `connect`.
+DatabaseConnection.connect('chitter')
 
 class Application < Sinatra::Base
   # This allows the app code to refresh
@@ -9,11 +14,15 @@ class Application < Sinatra::Base
   end
 
   get '/' do
+    repo = PeepsRepository.new
+
+    @peeps = repo.all
+
     return erb(:chitter)
   end
 
-  get '/new_message' do
-    return erb(:new_message)
+  get '/new_peep' do
+    return erb(:new_peep)
   end
 
   get '/signup' do

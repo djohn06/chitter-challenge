@@ -7,14 +7,14 @@ describe Application do
   
   let(:app) { Application.new }
   
-  context "GET /new_message" do
+  context "GET /new_peep" do
     it 'returns 200 OK' do
       # Assuming the post with id 1 exists.
-      response = get('/new_message')
+      response = get('/new_peep')
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('<form method="POST" action="/new_message">')
-      expect(response.body).to include('<input type="text" name="message" />')
+      expect(response.body).to include('<form method="POST" action="/">')
+      expect(response.body).to include('<input type="text" name="peep" />')
     end
   end
 
@@ -23,9 +23,9 @@ describe Application do
       response = get('/signup')
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('<input type="text" name="email" placeholder="Email" />')
-      expect(response.body).to include('<input type="text" name="password" placeholder="Password" />')
-      expect(response.body).to include('<input type="text" name="username" placeholder="Username" />')
+      expect(response.body).to include('<input type="email" name="email" placeholder="Email" />')
+      expect(response.body).to include('<input type="password" name="password" placeholder="Password" />')
+      expect(response.body).to include('<input type="text" name="username" placeholder="@username" />')
     end
   end
 
@@ -34,7 +34,7 @@ describe Application do
       response = get('/login')
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('<input type="text" name="username" placeholder="username"/>')
+      expect(response.body).to include('<input type="text" name="username" placeholder="@username"/>')
       expect(response.body).to include('<input type="password" name="password" placeholder="password"/>')
       expect(response.body).to include('<input type="submit" value="Login"/>')
     end
